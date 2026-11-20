@@ -24,7 +24,7 @@ function updateQuestionCountPresentation() {
   elements.intro.textContent = `〇か×を選んでね。全${QUESTION_COUNT}問にチャレンジ！`;
   elements.metaDescription.setAttribute(
     "content",
-    `ねこについて楽しく学べる、全${QUESTION_COUNT}問の〇×クイズです。`,
+    `身近な雑学を楽しく学べる、全${QUESTION_COUNT}問の〇×クイズです。`,
   );
   elements.progressTrack.setAttribute("aria-valuemax", String(QUESTION_COUNT));
 }
@@ -166,9 +166,9 @@ function showResults() {
   elements.question.textContent = `${QUESTION_COUNT}問中 ${correctAnswers}問正解！`;
   elements.feedbackResult.textContent =
     correctAnswers === QUESTION_COUNT
-      ? "ねこ博士だね！ おみごと！"
+      ? "雑学博士だね！ おみごと！"
       : correctAnswers >= Math.ceil(QUESTION_COUNT * 0.7)
-        ? "すごい！ ねこのことをよく知ってるね。"
+        ? "すごい！ 雑学に詳しいね。"
         : "チャレンジありがとう！ またあそんでね。";
   elements.feedbackExplanation.textContent =
     "もう一度あそぶと、問題がシャッフルされるよ。";
@@ -191,7 +191,7 @@ function startQuiz() {
 
 async function loadQuiz() {
   try {
-    const response = await fetch("./cat-quiz.csv");
+    const response = await fetch("./trivia-quiz.csv");
     if (!response.ok) {
       throw new Error(`CSVを読み込めませんでした（HTTP ${response.status}）。`);
     }
