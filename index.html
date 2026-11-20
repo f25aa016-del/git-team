@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f6f1" />
+    <meta
+      name="description"
+      content="ねこについて楽しく学べる、全10問の〇×クイズです。"
+    />
+    <title>ねこものしりクイズ</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="ねこものしりクイズ ホーム">
+          <span class="brand-icon" aria-hidden="true">🐈</span>
+          <span>ねこものしりクイズ</span>
+        </a>
+        <div class="score" aria-live="polite" aria-atomic="true">
+          <span class="score-label">正答数</span>
+          <span class="score-value"><span id="score">0</span><span class="score-total"> / 10</span></span>
+        </div>
+      </header>
+
+      <section class="quiz-card" aria-labelledby="page-title">
+        <div class="eyebrow"><span class="sparkle" aria-hidden="true">✦</span> CAT TRIVIA</div>
+        <h1 id="page-title">ねこのこと、どれくらい知ってる？</h1>
+        <p class="intro">〇か×を選んでね。全10問にチャレンジ！</p>
+
+        <div class="progress-row">
+          <span id="question-count">読み込み中…</span>
+          <span id="progress-label">0%</span>
+        </div>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="クイズの進み具合"
+          aria-valuemin="0"
+          aria-valuemax="10"
+          aria-valuenow="0"
+        >
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="question-panel" aria-live="polite" aria-atomic="true">
+          <span class="question-mark" aria-hidden="true">?</span>
+          <p class="question" id="question">クイズを準備しています…</p>
+        </div>
+
+        <div class="answer-buttons" id="answer-buttons" aria-label="答えを選択">
+          <button class="answer-button true-button" type="button" data-answer="〇" disabled>
+            <span class="answer-symbol" aria-hidden="true">〇</span>
+            <span>そう思う！</span>
+          </button>
+          <button class="answer-button false-button" type="button" data-answer="×" disabled>
+            <span class="answer-symbol" aria-hidden="true">×</span>
+            <span>ちがうかも</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback" role="status" aria-live="polite" hidden>
+          <p class="feedback-result" id="feedback-result"></p>
+          <p class="feedback-explanation" id="feedback-explanation"></p>
+        </div>
+
+        <div class="action-row">
+          <button class="next-button" id="next-button" type="button" hidden>次の問題へ <span aria-hidden="true">→</span></button>
+          <button class="next-button restart-button" id="restart-button" type="button" hidden>もう一度あそぶ <span aria-hidden="true">↻</span></button>
+        </div>
+        <p class="error-message" id="error-message" role="alert" hidden></p>
+      </section>
+
+      <footer>あそびながら、ねこのことをもっと知ろう <span aria-hidden="true">🐾</span></footer>
+    </main>
+  </body>
+</html>
