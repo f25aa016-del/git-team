@@ -2,6 +2,9 @@ const QUESTION_COUNT = 10;
 
 const elements = {
   score: document.querySelector("#score"),
+  scoreTotal: document.querySelector("#score-total"),
+  intro: document.querySelector(".intro"),
+  metaDescription: document.querySelector('meta[name="description"]'),
   questionCount: document.querySelector("#question-count"),
   progressLabel: document.querySelector("#progress-label"),
   progressTrack: document.querySelector(".progress-track"),
@@ -15,6 +18,16 @@ const elements = {
   restartButton: document.querySelector("#restart-button"),
   errorMessage: document.querySelector("#error-message"),
 };
+
+function updateQuestionCountPresentation() {
+  elements.scoreTotal.textContent = String(QUESTION_COUNT);
+  elements.intro.textContent = `〇か×を選んでね。全${QUESTION_COUNT}問にチャレンジ！`;
+  elements.metaDescription.setAttribute(
+    "content",
+    `身近な雑学を楽しく学べる、全${QUESTION_COUNT}問の〇×クイズです。`,
+  );
+  elements.progressTrack.setAttribute("aria-valuemax", String(QUESTION_COUNT));
+}
 
 let questions = [];
 let currentIndex = 0;
@@ -150,12 +163,12 @@ function answerQuestion(selectedAnswer) {
 }
 
 function showResults() {
-  elements.question.textContent = `10問中 ${correctAnswers}問正解！`;
+  elements.question.textContent = `${QUESTION_COUNT}問中 ${correctAnswers}問正解！`;
   elements.feedbackResult.textContent =
     correctAnswers === QUESTION_COUNT
-      ? "ねこ博士だね！ おみごと！"
-      : correctAnswers >= 7
-        ? "すごい！ ねこのことをよく知ってるね。"
+      ? "雑学博士だね！ おみごと！"
+      : correctAnswers >= Math.ceil(QUESTION_COUNT * 0.7)
+        ? "すごい！ 雑学に詳しいね。"
         : "チャレンジありがとう！ またあそんでね。";
   elements.feedbackExplanation.textContent =
     "もう一度あそぶと、問題がシャッフルされるよ。";
@@ -178,7 +191,7 @@ function startQuiz() {
 
 async function loadQuiz() {
   try {
-    const response = await fetch("./cat-quiz.csv");
+    const response = await fetch("./trivia-quiz.csv");
     if (!response.ok) {
       throw new Error(`CSVを読み込めませんでした（HTTP ${response.status}）。`);
     }
@@ -205,4 +218,5 @@ elements.answerButtons.forEach((button) => {
 elements.nextButton.addEventListener("click", showQuestion);
 elements.restartButton.addEventListener("click", startQuiz);
 
+updateQuestionCountPresentation();
 loadQuiz();
