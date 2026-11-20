@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f8f6f1" />
     <meta
       name="description"
-      content="ねこについて楽しく学べる、全10問の〇×クイズです。"
+      content="ねこについて楽しく学べる〇×クイズです。"
     />
     <title>ねこものしりクイズ</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -21,14 +21,14 @@
         </a>
         <div class="score" aria-live="polite" aria-atomic="true">
           <span class="score-label">正答数</span>
-          <span class="score-value"><span id="score">0</span><span class="score-total"> / 10</span></span>
+          <span class="score-value"><span id="score">0</span><span class="score-total"> / <span id="score-total"></span></span></span>
         </div>
       </header>
 
       <section class="quiz-card" aria-labelledby="page-title">
         <div class="eyebrow"><span class="sparkle" aria-hidden="true">✦</span> CAT TRIVIA</div>
         <h1 id="page-title">ねこのこと、どれくらい知ってる？</h1>
-        <p class="intro">〇か×を選んでね。全10問にチャレンジ！</p>
+        <p class="intro">〇か×を選んでね。</p>
 
         <div class="progress-row">
           <span id="question-count">読み込み中…</span>
@@ -39,7 +39,6 @@
           role="progressbar"
           aria-label="クイズの進み具合"
           aria-valuemin="0"
-          aria-valuemax="10"
           aria-valuenow="0"
         >
           <div class="progress-fill" id="progress-fill"></div>
